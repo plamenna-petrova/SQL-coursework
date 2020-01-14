@@ -2,31 +2,31 @@
 
  GO
 
- -- 1) Write a query in SQL to find the name and year of the movies
+ -- 1) 
 
  SELECT MovieTitle, MovieYear
  FROM Movies
 
- --2) Write a query in SQL to find the year when the movie American Beauty released.
+ --2) 
 
  SELECT MovieYear
  FROM Movies
  WHERE MovieTitle = 'Donnie Darko'
 
- --3) Write a query in SQL to find the year when the movie American Beauty released.
+ --3) 
 
  SELECT MovieTitle
  FROM Movies
  WHERE MovieYear = 2019
  ORDER BY MovieTitle
 
- --4) Write a query in SQL to find the year when the movie American Beauty released.
+ --4) 
 
  SELECT MovieTitle
  FROM Movies
  WHERE MovieYear < 1980
 
- --5) Write a query in SQL with UNION.
+ --5) 
 
  SELECT Reviewers.ReviewerLastName 
  FROM Reviewers
@@ -34,7 +34,7 @@
  (SELECT Movies.MovieTitle
  FROM Movies)
 
- --6) Write a query in SQL to find the name of all reviewers who have rated 9 or more stars to their rating.
+ --6) 
 
  SELECT Reviewers.ReviewerFirstName + ' ' + Reviewers.ReviewerLastName AS ReviewerFullName
  FROM Reviewers, Rating
@@ -43,7 +43,7 @@
  AND Reviewers.ReviewerFirstName IS NOT NULL
  AND Reviewers.ReviewerLastName IS NOT NULL
 
- --7) Write a query in SQL to find the titles of all movies that have no ratings.
+ --7) 
 
  SELECT MovieTitle
  FROM Movies
@@ -52,29 +52,27 @@
  FROM Rating
   )
 
- --8) Write a query in SQL to find the titles of the movies with ID 15, 70, 120, 190, 210, 235.
+ --8) 
 
  SELECT MovieTitle
  FROM Movies
  WHERE MovieID IN (15, 70, 120, 190, 210, 235)
 
- --9) Write a query in SQL to find the list of all those movies with year which include the words Star Wars.
+ --9) 
 
  SELECT MovieID, MovieTitle, MovieYear
  FROM Movies
  WHERE MovieTitle LIKE '%Star%Wars%'
  ORDER BY MovieYear ASC
 
- --10) Write a query in SQL to find the ID number for the actor whose first name is 'Benedict' and the last name is 'Cumberbatch'.
+ --10) 
 
  SELECT ActorID
  FROM Actors
  WHERE ActorFirstName = 'Benedict' 
  AND ActorLastName = 'Cumberbatch'
 
-  /* 11) Write a query in SQL 
-  to list the first and last names of all the actors who were cast 
-  in the movie 'The Lord of the Rings: The Return of the King', and the roles they played in that production */
+ --11)
 
  SELECT ActorFirstName, ActorLastName, MovieRole
  FROM Actors
@@ -85,9 +83,7 @@
  AND Movies.MovieTitle = 'The Lord of the Rings: The Return of the King'
  ORDER BY ActorFirstName ASC
 
- /* 12) Write a query in SQL to find the name of
- movie and director (first and last names) who 
- directed a movie that casted a role for 'Before Sunrise' */
+--12)
 
  SELECT DirectorFirstName, DirectorLastName, MovieTitle
  FROM Directors 
@@ -97,8 +93,7 @@
  ON Movies.MovieID = MoviesDirection.MovieID
  AND MovieTitle = 'Before Sunrise'
 
- /* 13) Write a query in SQL to find the name of movie and director (first and last names) 
- who directed a movie that casted a role as Jason Bourne. */
+ --13)
 
  SELECT DirectorFirstName, DirectorLastName, MovieTitle
  FROM  Directors 
@@ -117,9 +112,7 @@
  AND Movies.MovieID=MoviesCast.MovieID
  AND MoviesCast.MovieRole= 'Forrest Gump'
 
- /* 14)Write a query in SQL to list all 
- the actors who have not acted in any movie 
- between 1960 and 2020. */
+ --14)
 
  SELECT ActorFirstName, ActorLastName, MovieTitle, MovieYear
  FROM Actors
@@ -137,11 +130,7 @@
  AND c.MovieYear NOT BETWEEN 1960 and 2020
  ORDER BY MovieYear, ActorFirstName
 
- /* 15) Write a query in SQL to list first and 
- last name of all the directors with number of 
- genres movies they directed with genres name, 
- and arranged the result alphabetically with the 
- first and last name of the director. */ 
+ --15)
 
  SELECT  GenreTitle, COUNT(GenreTitle) AS NoMovieGenres
  FROM Genres
@@ -155,8 +144,7 @@
  GROUP BY GenreTitle
  ORDER BY GenreTitle
 
- /* 16) Write a query in SQL to list all the movies 
- with of the year 1980 with genres. */
+ --16)
 
  SELECT MovieTitle, MovieYear, GenreTitle
  FROM Movies
@@ -166,8 +154,7 @@
  ON Genres.GenreID = MoviesGenres.GenreID
  WHERE MovieYear = 1980
 
- /* 17) Write a query in SQL to list all the 
- movies with year, genres, and name of the director */
+ --17)
 
  SELECT MovieTitle, MovieYear, GenreTitle, DirectorFirstName, DirectorLastName
  FROM Movies
@@ -182,13 +169,7 @@
  WHERE MovieBoxOffice > 1100000000
  ORDER BY MovieBoxOffice DESC
 
- /* 18) Write a query in SQL to list 
- all the movies with title, 
- year, date of release, movie duration, 
- and first and last name of the director 
- which released before 1st January 1989, 
- and sort the result set 
- according to release date from highest date to lowest */
+ --18)
 
  SELECT m.MovieTitle, m.MovieYear, m.MovieReleaseDate, m.MovieTime, d.DirectorFirstName, d.DirectorLastName
  FROM Movies AS m
@@ -199,8 +180,7 @@
  WHERE m.MovieReleaseDate > '01/01/2010' AND m.MovieReleaseDate < '12/31/2010'
  ORDER BY MovieReleaseDate DESC
 
- /* 19) Write a query in SQL to compute a report which contain the genres of those movies with 
- their average time and number of movies for each genres */
+ --19)
 
  SELECT GenreTitle, AVG(MovieTime) AS AverageMovieTime, COUNT(GenreTitle) AS CountGenreTitle
  FROM Movies
@@ -210,9 +190,7 @@
  Genres.GenreID = MoviesGenres.GenreID
  GROUP BY GenreTitle
 
- /* 20) Write a query in SQL to find those lowest 
- duration movies along with the year, director's name, 
- actor's name and his/her role in that production */
+ --20)
 
  SELECT MovieTitle, MovieYear, DirectorFirstName, DirectorLastName, 
  ActorFirstName, ActorLastName, MovieRole
@@ -229,9 +207,8 @@
  (SELECT MIN(MovieTime) AS MinMovieTime 
  FROM Movies)
 
- /*21 Sum of the box office, made by the movies, which are directed
-  by Christopher Nolan */
-
+ --21)
+ 
  SELECT SUM(MovieBoxOffice) AS BoxOfficeSum
  FROM Movies
  JOIN MoviesDirection 
@@ -240,16 +217,18 @@
  ON Directors.DirectorID = MoviesDirection.DirectorID
  WHERE DirectorFirstName = 'Christopher' AND DirectorLastName = 'Nolan'
 
- /*22. Find the maximum Movie rating and minimum metascore. */
+ --22)
+ 
  SELECT MAX(ReviewStars) AS MaximumReviewStars, MIN (Metascore) AS SmallestMetascore
  FROM Rating
 
- /*23. Count the number of male actors in the table actors */
+ --23)
+ 
  SELECT COUNT(ActorGender) AS NumberOfMaleActors
  FROM Actors
  WHERE ActorGender = 'M'  AND ActorGender IS NOT NULL
 
- /*24. Find the average rating of the movies, in which stars Jodie Foster */
+ --24)
 
  SELECT AVG(ReviewStars) AS AverageReviewStars
  FROM Rating
@@ -259,7 +238,7 @@
  ON Actors.ActorID = MoviesCast.ActorID
  WHERE ActorFirstName = 'Jodie' AND ActorLastName = 'Foster'
 
- /*25. Find the name of the directors, who have received on average more than 8.0 stars for their movies . */
+ --25)
 
  SELECT  DirectorFirstName, DirectorLastName, AVG(ReviewStars) AS AverageReviewStars, COUNT(MoviesDirection.MovieID) AS CountOfMovies
  FROM Rating
@@ -271,7 +250,7 @@
  HAVING AVG (ReviewStars) > 8.3 AND COUNT(MoviesDirection.MovieID) > 1
  ORDER BY AverageReviewStars DESC
 
- /*26. Find the title of the movies along with their date of release and release country, in which star more than three actors. */
+ --26)
 
  SELECT MovieTitle, MovieReleaseDate, MovieReleaseCountry, COUNT(MoviesCast.ActorID) AS NumberOfActors
  FROM Movies
@@ -283,8 +262,8 @@
  HAVING COUNT(MoviesCast.ActorID) > 5
  ORDER BY COUNT(MoviesCast.ActorID) DESC, MovieReleaseDate
 
- /*27. Find the maximum metascore, where the reviewers have evaluated one movie. */
-
+ --27)
+ 
  SELECT TOP(3) MAX(Metascore) AS MaxMetascore, COUNT(Rating.ReviewerID) AS ReviewerIDCount, ReviewerFirstName, ReviewerLastName
  FROM Rating
  JOIN Reviewers
@@ -293,7 +272,7 @@
  HAVING COUNT(Rating.ReviewerID) = 1 
  ORDER BY MAX(Metascore) DESC
 
- /*28. Find the minimum number of reviews of movies along with their title , where a director has directed more than 4 movies */
+ --28)
 
  SELECT GenreTitle, COUNT(MoviesGenres.GenreID) AS NumberOfGenres
  FROM Genres
@@ -303,8 +282,8 @@
  HAVING COUNT(MoviesGenres.GenreID) > 15
  ORDER BY COUNT(MoviesGenres.GenreID) DESC
 
- /*29. Find the minimum number of reviews for movies, where the director has directed more than two movies. */
-
+ --29)
+ 
  SELECT MIN(NumberOfRatings) AS MinNumberOfRatings, COUNT(MoviesDirection.DirectorID) AS CountDirectorID, DirectorFirstName, DirectorLastName
  FROM Rating
  JOIN MoviesDirection 
@@ -315,8 +294,7 @@
  HAVING COUNT(MoviesDirection.DirectorID) > 4
  ORDER BY COUNT(MoviesDirection.DirectorID) ASC, DirectorFirstName ASC
 
- /*30. Write a query in SQL to list all the information of the actors who 
- played a role in the movie 'The Godfather'. */
+ --30)
 
  SELECT *
  FROM Actors
@@ -329,10 +307,8 @@
  WHERE MovieTitle = 'The Godfather'
  ))
 
- /* 31) Write a query in SQL to find the name of 
- the director (first and last names) who directed a 
- movie that casted a role for Gladiator. */
-
+ --31)
+	 
  SELECT DirectorFirstName, DirectorLastName
  FROM Directors
  WHERE DirectorID IN(
@@ -348,10 +324,7 @@
  FROM Movies
  WHERE MovieTitle = 'Gladiator'))))
 
- /* 32)Write a query in SQL to 
- list the first and last names of the actors
- who star in movies, released in any
- country other than USA. */
+ --32)
 
  SELECT ActorFirstName, ActorLastName
  FROM Actors
@@ -363,9 +336,7 @@
  FROM Movies
  WHERE MovieReleaseCountry <> 'USA'))
 
- /*33). Write a query in SQL to find the movie title, 
- year, date of release, director and actor for those 
- movies which reviewer is unknown. */
+ --33)
 
  SELECT MovieTitle, MovieYear, MovieReleaseDate,
  DirectorFirstName, DirectorLastName, ActorFirstName, ActorLastName
@@ -379,85 +350,76 @@
  AND g.ActorID = f.ActorID
  AND e.ReviewerLastName IS NULL
 
-   /* 34).Write a query in SQL to find 
-   the titles of all movies directed by the director 
-   whose first and last name are David Fincher. */
+ --34)
 
-   SELECT MovieTitle
-   FROM Movies
-   WHERE MovieID IN (
-   SELECT MovieID
-   FROM MoviesDirection
-   WHERE DirectorID IN (
-   SELECT DirectorID 
-   FROM Directors
-   WHERE DirectorFirstName = 'David' AND DirectorLastName = 'Fincher'))
+ SELECT MovieTitle
+ FROM Movies
+ WHERE MovieID IN (
+ SELECT MovieID
+ FROM MoviesDirection
+ WHERE DirectorID IN (
+ SELECT DirectorID 
+ FROM Directors
+ WHERE DirectorFirstName = 'David' AND DirectorLastName = 'Fincher'))
 
-   /* 35) Write a query in SQL to find all 
-   the years which produced at least one movie 
-   and that received a rating of more than 8.6 stars. Show the results in increasing order. */
+ --35)
+	 
+ SELECT DISTINCT MovieYear
+ FROM Movies
+ WHERE MovieID IN(
+ SELECT MovieID
+ FROM Rating
+ WHERE ReviewStars > 8.6)
+ ORDER BY MovieYear
 
-   SELECT DISTINCT MovieYear
-   FROM Movies
-   WHERE MovieID IN(
-   SELECT MovieID
-   FROM Rating
-   WHERE ReviewStars > 8.6)
-   ORDER BY MovieYear
+ --36)
 
-   /* 36) Write a query in SQL to find the 
-   names of all reviewers who have ratings with a NULL value. */
+ SELECT DISTINCT ReviewerFirstName
+ FROM Reviewers
+ WHERE ReviewerID IN(
+ SELECT ReviewerID
+ FROM Rating
+ WHERE ReviewStars IS NULL)
 
-   SELECT DISTINCT ReviewerFirstName
-   FROM Reviewers
-   WHERE ReviewerID IN(
-   SELECT ReviewerID
-   FROM Rating
-   WHERE ReviewStars IS NULL)
+ --37)
 
-  /* 37) Write a query in SQL to find the names of 
-  all reviewers who rated the movie Interstellar. */
+ SELECT DISTINCT Reviewers.ReviewerFirstName, Reviewers.ReviewerLastName
+ FROM Reviewers, Rating, Movies
+ WHERE Reviewers.ReviewerID = Rating.ReviewerID
+ AND Movies.MovieID = Rating.MovieID
+ AND Movies.MovieTitle = 'Interstellar'
 
-  SELECT DISTINCT Reviewers.ReviewerFirstName, Reviewers.ReviewerLastName
-  FROM Reviewers, Rating, Movies
-  WHERE Reviewers.ReviewerID = Rating.ReviewerID
-  AND Movies.MovieID = Rating.MovieID
-  AND Movies.MovieTitle = 'Interstellar'
+ --38)
 
-  /* 38) Write a query in SQL to return the reviewer name, movie title, and number 
-  of stars for those movies which rating is the lowest one. */
+ SELECT Reviewers.ReviewerFirstName + ' ' + Reviewers.ReviewerLastName AS ReviewerFullName,
+ Movies.MovieTitle, Rating.ReviewStars
+ FROM Reviewers, Movies, Rating
+ WHERE Rating.ReviewStars = (
+ SELECT MIN(Rating.ReviewStars) 
+ FROM Rating
+ )
+ AND Rating.ReviewerID = Reviewers.ReviewerID
+ AND Rating.MovieID = Movies.MovieID
 
-  SELECT Reviewers.ReviewerFirstName + ' ' + Reviewers.ReviewerLastName AS ReviewerFullName,
-  Movies.MovieTitle, Rating.ReviewStars
-  FROM Reviewers, Movies, Rating
-  WHERE Rating.ReviewStars = (
-  SELECT MIN(Rating.ReviewStars) 
-  FROM Rating
-  )
-  AND Rating.ReviewerID = Reviewers.ReviewerID
-  AND Rating.MovieID = Movies.MovieID
+ --39)
+	 
+ SELECT MovieTitle
+ FROM Movies
+ WHERE MovieID IN(
+ SELECT MovieID
+ FROM MoviesCast
+ WHERE ActorID IN(
+ SELECT ActorID
+ FROM Actors
+ WHERE ActorID IN(
+ SELECT ActorID
+ FROM MoviesCast
+ GROUP BY ActorID
+ HAVING COUNT(ActorID) > 8)))
 
-  /* 39) Write a query in SQL to find the name of those movies 
-  where one or more actors acted in eight or more movies. */
+ --40)
 
-  SELECT MovieTitle
-  FROM Movies
-  WHERE MovieID IN(
-  SELECT MovieID
-  FROM MoviesCast
-  WHERE ActorID IN(
-  SELECT ActorID
-  FROM Actors
-  WHERE ActorID IN(
-  SELECT ActorID
-  FROM MoviesCast
-  GROUP BY ActorID
-  HAVING COUNT(ActorID) > 8)))
-
-
-  /* 40) Case expressions example 1 */
-
-  SELECT ReviewStars,
+ SELECT ReviewStars,
   CASE 
      WHEN ReviewStars BETWEEN 6.6 AND 7.2 THEN 'Very Low'
 	 WHEN ReviewStars BETWEEN 7.3 AND 7.6 THEN 'Low'
@@ -471,8 +433,7 @@
  FROM Rating
  ORDER BY ReviewStars DESC
 
-
- /* 41) Case expressions example 2 */
+ --41)
 
  SELECT Metascore,
  CASE 
@@ -488,127 +449,126 @@
  FROM Rating
  ORDER BY Metascore ASC
 
-
- /* 42) Date functions example 1 */
+ --42)
 
  SELECT DATEPART(year, MovieReleaseDate) AS DatePartYear
  FROM Movies
  WHERE MovieID = 23
 
- /* 43) Date functions example 2 */
+ --43)
 
  SELECT DATEPART(month, MovieReleaseDate) AS DatePartMonth
  FROM Movies
  WHERE MovieID = 101
 
- /* 44) Date functions example 3 */
+ --44)
 
  SELECT DATEPART(day, MovieReleaseDate) AS DatePartDay
  FROM Movies
  WHERE MovieID = 179
 
-  /* 45) Date functions example 4 */
+ --45)
 
  SELECT DATENAME(year, MovieReleaseDate) AS DatePartStringYear
  FROM Movies
  WHERE MovieID = 23
 
-  /* 46) Date functions example 5 */
+ --46)
 
  SELECT DATENAME(month, MovieReleaseDate) AS DatePartMonth
  FROM Movies
  WHERE MovieID = 101
 
- /* 47) Date functions example 6 */
+ --47)
 
  SELECT DATENAME(day, MovieReleaseDate) AS DatePartDay
  FROM Movies
  WHERE MovieID = 179
 
- /* 48) Date functions example 7 */
+ --48)
 
  SELECT GETDATE() AS CurrentTime
 
- /* 49) Date functions example 8 */
+ --49)
 
  SELECT DATEDIFF(year, '01/01/2019', '01/01/2020') AS DateDiffYear
 
- /* 50) String Functions  example 1 */
+ --50)
 
  SELECT LEN(MovieTitle) AS StringLength
  FROM Movies
  WHERE MovieID = 32
 
- /* 50) String Functions  example 2 */
+ --51)
 
  SELECT LEFT(MovieTitle, 6) AS LeftString
  FROM Movies
  WHERE MovieID = 65
 
- /* 51) String Functions  example 3 */
+ --52)
 
  SELECT RIGHT(MovieTitle, 5) AS RightString
  FROM Movies
  WHERE MovieID = 65
 
- /* 52) String Functions  example 4 */
+ --53)
 
  SELECT SUBSTRING(MovieTitle, 7,4) AS [SubString]
  FROM Movies
  WHERE MovieID = 65
 
- /* 53) String Functions  example 5 */
+ --54)
 
  SELECT UPPER(MovieTitle) AS UpperString
  FROM Movies
  WHERE MovieID = 207
 
- /* 54) String Functions  example 6 */
+ --55)
 
  SELECT LOWER(MovieTitle) AS LowerString
  FROM Movies
  WHERE MovieID = 242
 
- /* 55) String Functions  example 7 */
+ --56)
 
  SELECT PATINDEX('%star%', MovieTitle)
  FROM Movies
 
- /* 56) String Functions  example 8 */
+ --57)
 
  SELECT REVERSE(MovieTitle) AS ReversedString
  FROM Movies
  WHERE MovieID = 196
 
- /* 57) Convert datatypes expressions example 1 */
+ --58)
 
  SELECT CAST(MovieTime AS float) AS MovieTimeFloat
  FROM Movies
 
- /* 58) Convert datatypes expressions example 2 */
+ --59)
 
  SELECT CONVERT(float, MovieTime) AS MovieTimeFloat
  FROM Movies
 
- /* 59) Convert datatypes expressions example 3 */
+ --60)
 
  SELECT STR(ReviewStars) AS StrFunction
  FROM Rating
  WHERE MovieID = 43
 
- /* 60) Convert datatypes expressions example 4 */
+ --61)
 
  SELECT CONVERT(smalldatetime, MovieReleaseDate) AS Smalldate
  FROM Movies
  WHERE MovieID = 52
 
- /* 61) Convert datatypes expressions example 5 */
+ --62)
 
  SELECT CAST(MovieReleaseDate AS smalldatetime) AS Smalldate
  FROM Movies
  WHERE MovieID = 52
 
- /* 62) SQL Views example 1 */
+ --63)
 
  CREATE VIEW V_SpielbergMovies AS
  SELECT Movies.MovieID, MovieTitle, MovieYear, MovieTime, MovieLanguage, MovieReleaseDate, MovieReleaseCountry, MovieBoxOffice
@@ -636,8 +596,7 @@
 
  SELECT * FROM V_SpielbergMovies
 
-
- /* 63) SQL Views example 2 */
+ --64)
 
  CREATE VIEW V_JapaneseMovies AS
  SELECT ActorFirstName, ActorLastName, MovieRole, ReviewStars, NumberOfRatings, Metascore, MovieTitle
@@ -671,7 +630,6 @@
  SET MovieRole = 'Hauru'
  WHERE ActorFirstName = 'Taku'
 
- 
  UPDATE V_JapaneseMovies
  SET MovieRole = 'Sonoshee'
  WHERE ActorFirstName = 'Yu' AND ActorLastName = 'Aoi'
@@ -695,7 +653,7 @@
  FROM Actors
  WHERE ActorFirstName = 'Takuya'
 
- /* 64) SQL Views Example 3*/
+ --65)
 
  CREATE VIEW V_MysteryMovies AS
  SELECT MovieTitle, MovieYear, MovieLanguage, ReviewerFirstName + ' ' +ReviewerLastName AS ReviewerFullName
@@ -733,7 +691,7 @@
  WHERE MovieLanguage NOT IN('English')
  ORDER BY MovieYear DESC
 
- /* 65) SQL Procedures example 1*/
+ --66)
 
  CREATE PROCEDURE MoviesShortString @MovieTitle VARCHAR(10)
  AS
@@ -744,203 +702,203 @@
 
  EXEC MoviesShortString @MovieTitle = 'K-PAX'
 
- /* 66) SQL Procedures example 2*/
+ --67)
 
-  CREATE PROCEDURE SmallBoxOffice AS
-  SELECT MovieTitle, DirectorFirstName + ' ' +DirectorLastName AS
-  DirectorFullName, ReviewStars, Metascore
-  FROM Movies
-  JOIN MoviesDirection
-  ON MoviesDirection.MovieID = Movies.MovieID
-  JOIN Directors
-  ON Directors.DirectorID = MoviesDirection.DirectorID
-  JOIN Rating
-  ON Rating.MovieID = Movies.MovieID
-  WHERE MovieBoxOffice BETWEEN 100000 AND 10000000
-  ORDER BY ReviewStars DESC
+ CREATE PROCEDURE SmallBoxOffice AS
+ SELECT MovieTitle, DirectorFirstName + ' ' +DirectorLastName AS
+ DirectorFullName, ReviewStars, Metascore
+ FROM Movies
+ JOIN MoviesDirection
+ ON MoviesDirection.MovieID = Movies.MovieID
+ JOIN Directors
+ ON Directors.DirectorID = MoviesDirection.DirectorID
+ JOIN Rating
+ ON Rating.MovieID = Movies.MovieID
+ WHERE MovieBoxOffice BETWEEN 100000 AND 10000000
+ ORDER BY ReviewStars DESC
 
-  ALTER PROCEDURE SmallBoxOffice AS
-  SELECT MovieTitle, DirectorFirstName + ' ' +DirectorLastName AS
-  DirectorFullName, ReviewStars, Metascore
-  FROM Movies
-  JOIN MoviesDirection
-  ON MoviesDirection.MovieID = Movies.MovieID
-  JOIN Directors
-  ON Directors.DirectorID = MoviesDirection.DirectorID
-  JOIN Rating
-  ON Rating.MovieID = Movies.MovieID
-  WHERE MovieBoxOffice BETWEEN 100000 AND 10000000
-  AND ReviewStars > 7.5
-  ORDER BY ReviewStars DESC
+ ALTER PROCEDURE SmallBoxOffice AS
+ SELECT MovieTitle, DirectorFirstName + ' ' +DirectorLastName AS
+ DirectorFullName, ReviewStars, Metascore
+ FROM Movies
+ JOIN MoviesDirection
+ ON MoviesDirection.MovieID = Movies.MovieID
+ JOIN Directors
+ ON Directors.DirectorID = MoviesDirection.DirectorID
+ JOIN Rating
+ ON Rating.MovieID = Movies.MovieID
+ WHERE MovieBoxOffice BETWEEN 100000 AND 10000000
+ AND ReviewStars > 7.5
+ ORDER BY ReviewStars DESC
 
-  EXEC SmallBoxOffice
+ EXEC SmallBoxOffice
 
-  DROP PROCEDURE SmallBoxOffice
+ DROP PROCEDURE SmallBoxOffice
 
-  /* 67) SQL Procedures example 3 */
+ --68)
 
-  CREATE PROCEDURE UnknownReviewerLastName AS
-  SELECT MovieID, MovieTitle, MovieYear
-  FROM Movies
-  WHERE MovieID IN(
-  SELECT MovieID
-  FROM Rating
-  WHERE ReviewerID IN(
-  SELECT ReviewerID
-  FROM Reviewers
-  WHERE ReviewerLastName IS NULL))
+ CREATE PROCEDURE UnknownReviewerLastName AS
+ SELECT MovieID, MovieTitle, MovieYear
+ FROM Movies
+ WHERE MovieID IN(
+ SELECT MovieID
+ FROM Rating
+ WHERE ReviewerID IN(
+ SELECT ReviewerID
+ FROM Reviewers
+ WHERE ReviewerLastName IS NULL))
 
-  EXEC  UnknownReviewerLastName
+ EXEC  UnknownReviewerLastName
 
-  RETURN @@ROWCOUNT
+ RETURN @@ROWCOUNT
 
-  /* 68) SQL Procedures example 4 */
+ --69)
 
-   ALTER PROCEDURE ActorsProcedure
-   @ActorID int
-   AS
-   SELECT MovieTitle, MovieLanguage, MovieReleaseDate, ActorFirstName + ' ' + ' ' +ActorLastName
-   AS ActorFullName
-   FROM Movies
-   JOIN MoviesDirection
-   ON MoviesDirection.MovieID = Movies.MovieID
-   JOIN Directors
-   ON MoviesDirection.DirectorID = Directors.DirectorID
-   JOIN MoviesCast
-   ON MoviesCast.MovieID = Movies.MovieID
-   JOIN Actors
-   ON Actors.ActorID = MoviesCast.ActorID
-   WHERE DirectorLastName = 'Zemeckis'
-   AND Actors.ActorID = @ActorID
-   ORDER BY MovieReleaseDate 
+ ALTER PROCEDURE ActorsProcedure
+ @ActorID int
+ AS
+ SELECT MovieTitle, MovieLanguage, MovieReleaseDate, ActorFirstName + ' ' + ' ' +ActorLastName
+ AS ActorFullName
+ FROM Movies
+ JOIN MoviesDirection
+ ON MoviesDirection.MovieID = Movies.MovieID
+ JOIN Directors
+ ON MoviesDirection.DirectorID = Directors.DirectorID
+ JOIN MoviesCast
+ ON MoviesCast.MovieID = Movies.MovieID
+ JOIN Actors
+ ON Actors.ActorID = MoviesCast.ActorID
+ WHERE DirectorLastName = 'Zemeckis'
+ AND Actors.ActorID = @ActorID
+ ORDER BY MovieReleaseDate 
 
-   EXEC ActorsProcedure 197
+ EXEC ActorsProcedure 197
 
-   ALTER PROCEDURE ActorsProcedure
-   @ActorID int = 197
-   AS
-   SELECT MovieTitle, MovieLanguage, MovieReleaseDate, ActorFirstName + ' ' + ' ' +ActorLastName
-   AS ActorFullName
-   FROM Movies
-   JOIN MoviesDirection
-   ON MoviesDirection.MovieID = Movies.MovieID
-   JOIN Directors
-   ON MoviesDirection.DirectorID = Directors.DirectorID
-   JOIN MoviesCast
-   ON MoviesCast.MovieID = Movies.MovieID
-   JOIN Actors
-   ON Actors.ActorID = MoviesCast.ActorID
-   WHERE DirectorLastName = 'Zemeckis'
-   AND Actors.ActorID = @ActorID
-   ORDER BY MovieReleaseDate 
+ ALTER PROCEDURE ActorsProcedure
+ @ActorID int = 197
+ AS
+ SELECT MovieTitle, MovieLanguage, MovieReleaseDate, ActorFirstName + ' ' + ' ' +ActorLastName
+ AS ActorFullName
+ FROM Movies
+ JOIN MoviesDirection
+ ON MoviesDirection.MovieID = Movies.MovieID
+ JOIN Directors
+ ON MoviesDirection.DirectorID = Directors.DirectorID
+ JOIN MoviesCast
+ ON MoviesCast.MovieID = Movies.MovieID
+ JOIN Actors
+ ON Actors.ActorID = MoviesCast.ActorID
+ WHERE DirectorLastName = 'Zemeckis'
+ AND Actors.ActorID = @ActorID
+ ORDER BY MovieReleaseDate 
 
-   EXEC ActorsProcedure DEFAULT
+ EXEC ActorsProcedure DEFAULT
 
-   /* 69) SQL Procedures example 5 */
+ --70)
 
-   CREATE PROCEDURE DirectorsProcedure
-   @DirectorFirstName VARCHAR(20) = NULL
-   AS
-   IF @DirectorFirstName IS NOT NULL
-   SELECT *
-   FROM Directors
-   WHERE DirectorFirstName LIKE @DirectorFirstName + '%'
-   ELSE
-   SELECT *
-   FROM Directors
-   RETURN @@ROWCOUNT
+ CREATE PROCEDURE DirectorsProcedure
+ @DirectorFirstName VARCHAR(20) = NULL
+ AS
+ IF @DirectorFirstName IS NOT NULL
+ SELECT *
+ FROM Directors
+ WHERE DirectorFirstName LIKE @DirectorFirstName + '%'
+ ELSE
+ SELECT *
+ FROM Directors
+ RETURN @@ROWCOUNT
 
-   EXECUTE DirectorsProcedure
+ EXECUTE DirectorsProcedure
 
-   /* 70) SQL Procedures example 6 */
+ --71)
 
-   ALTER PROCEDURE TopRatedMovies
-   @MovieID int
-   AS
-   SELECT m.MovieID, m.MovieTitle, r.ReviewStars, r.NumberOfRatings, r.Metascore
-   FROM Movies AS m
-   JOIN Rating AS r
-   ON r.MovieID = m.MovieID
-   WHERE ReviewStars > 8.5
-   AND m.MovieID = @MovieID
+ ALTER PROCEDURE TopRatedMovies
+ @MovieID int
+ AS
+ SELECT m.MovieID, m.MovieTitle, r.ReviewStars, r.NumberOfRatings, r.Metascore
+ FROM Movies AS m
+ JOIN Rating AS r
+ ON r.MovieID = m.MovieID
+ WHERE ReviewStars > 8.5
+ AND m.MovieID = @MovieID
 
-   EXEC TopRatedMovies 78
+ EXEC TopRatedMovies 78
 
-   /* 71) SQL Procedures example 7 */
+ --72)
 
-   CREATE PROCEDURE BestMovies
-   @MovieID int, @Metascore int OUTPUT
-   AS
-   SELECT @Metascore = Metascore
-   FROM Rating
-   WHERE MovieID = @MovieID
+ CREATE PROCEDURE BestMovies
+ @MovieID int, @Metascore int OUTPUT
+ AS
+ SELECT @Metascore = Metascore
+ FROM Rating
+ WHERE MovieID = @MovieID
 
-   DECLARE @Metascore int
-   EXEC BestMovies 115, @Metascore OUTPUT
-   SELECT @Metascore AS HighMetascore
+ DECLARE @Metascore int
+ EXEC BestMovies 115, @Metascore OUTPUT
+ SELECT @Metascore AS HighMetascore
 
-   /* 72) SQL Functions example 1*/
+ --73)
    
-   CREATE FUNCTION fnFormatMovieReleaseDate
-   (@sdtMovieReleaseDate date)
-   RETURNS smalldatetime
-   AS
-   BEGIN
-      DECLARE @sdtDateFormat smalldatetime
-	  SET @sdtDateFormat = @sdtMovieReleaseDate
-	  RETURN @sdtDateFormat
-   END
+ CREATE FUNCTION fnFormatMovieReleaseDate
+ (@sdtMovieReleaseDate date)
+ RETURNS smalldatetime
+ AS
+ BEGIN
+     DECLARE @sdtDateFormat smalldatetime
+	 SET @sdtDateFormat = @sdtMovieReleaseDate
+	 RETURN @sdtDateFormat
+ END
 
-   SELECT dbo.fnFormatMovieReleaseDate
-   ('01/01/2019') AS FormatedMovieReleaseDate
+ SELECT dbo.fnFormatMovieReleaseDate
+ ('01/01/2019') AS FormatedMovieReleaseDate
 
-  /* 73) SQL Functions example 2*/
+ --74)
 
-  ALTER FUNCTION fnMoviesByActor
-  (@iActorID int)
-  RETURNS table
-  AS
-  RETURN
-  ( SELECT m.MovieTitle, m.MovieYear, m.MovieLanguage, m.MovieBoxOffice
-    FROM Movies AS m
-	JOIN MoviesCast AS mc
-    ON mc.MovieID = m.MovieID
-	JOIN Actors AS a
-	ON a.ActorID = mc.ActorID
-	WHERE a.ActorID = @iActorID )
+ ALTER FUNCTION fnMoviesByActor
+ (@iActorID int)
+ RETURNS table
+ AS
+ RETURN
+ ( SELECT m.MovieTitle, m.MovieYear, m.MovieLanguage, m.MovieBoxOffice
+   FROM Movies AS m
+     JOIN MoviesCast AS mc
+      ON mc.MovieID = m.MovieID
+      JOIN Actors AS a
+      ON a.ActorID = mc.ActorID
+   WHERE a.ActorID = @iActorID )
 
-	SELECT *
-	FROM fnMoviesByActor (7)
-	ORDER BY MovieYear
+ SELECT *
+ FROM fnMoviesByActor (7)
+ ORDER BY MovieYear
 
-  /* 74) SQL Functions example 3*/
+ --75)
 
-  ALTER FUNCTION fnMoviesActors
-  (@sMovieTitle VARCHAR(30))
-  RETURNS table
-  AS
-  RETURN
-  ( SELECT m.MovieTitle, m.MovieYear, m.MovieLanguage, m.MovieBoxOffice, a.ActorID, a.ActorFirstName, a.ActorLastName
-    FROM Movies AS m
-	JOIN MoviesCast AS mc
-	ON mc.MovieID = m.MovieID
-	JOIN Actors AS a
-	ON a.ActorID = mc.ActorID
-	WHERE m.MovieTitle = @sMovieTitle)
+ ALTER FUNCTION fnMoviesActors
+ (@sMovieTitle VARCHAR(30))
+ RETURNS table
+ AS
+ RETURN
+ ( SELECT m.MovieTitle, m.MovieYear, m.MovieLanguage, m.MovieBoxOffice, a.ActorID, a.ActorFirstName, a.ActorLastName
+   FROM Movies AS m
+     JOIN MoviesCast AS mc
+     ON mc.MovieID = m.MovieID
+     JOIN Actors AS a
+     ON a.ActorID = mc.ActorID
+   WHERE m.MovieTitle = @sMovieTitle)
 
-	SELECT fn.*, mc.MovieRole
-	FROM fnMoviesActors ('Tonari no totoro') fn
-	INNER JOIN MoviesCast mc
-    ON mc.ActorID = fn.ActorID
+ SELECT fn.*, mc.MovieRole
+ FROM fnMoviesActors ('Tonari no totoro') fn
+ INNER JOIN MoviesCast mc
+ ON mc.ActorID = fn.ActorID
 
-  /* 75) SQL Functions example 4 */
+ --76)
 
-  ALTER FUNCTION fnMyFavouriteMovies
-  (@iMovieYear int)
-  RETURNS @tblFavouriteMovies table
-  (MovieTitle VARCHAR(30),
-    MovieYear int,
-	MovieLanguage VARCHAR(20))
+ ALTER FUNCTION fnMyFavouriteMovies
+ (@iMovieYear int)
+ RETURNS @tblFavouriteMovies table
+ (MovieTitle VARCHAR(30),
+ MovieYear int,
+ MovieLanguage VARCHAR(20))
   AS
   BEGIN
     INSERT INTO @tblFavouriteMovies
@@ -957,7 +915,7 @@
   SELECT *
   FROM fnMyFavouriteMovies(1998)
 
-  /* 76) SQL Functions example 5 */
+  --77)
 
   ALTER FUNCTION fnMyFavouriteMovies
   (@iMovieYear int)
@@ -982,7 +940,7 @@
 
   END
 
-  /* 77) SQL Triggers example 1 */
+  --78)
 
   CREATE TRIGGER No_DeleteDirectors
   ON Directors
@@ -994,7 +952,7 @@
   DELETE FROM Directors
   WHERE DirectorID = 1
  
- /* 78) SQL Triggers example 2 */
+ --79)
 
  CREATE TRIGGER MovieDirector
    ON MoviesDirection
@@ -1018,7 +976,7 @@
 
   DROP TRIGGER RatingHasMovieID
 
-  /* 79) SQL Triggers example 3 */
+ --80)
 
  CREATE TRIGGER RatingHasMovieID
    ON Rating 
@@ -1038,55 +996,51 @@
   Rating 
   WHERE MovieID = 250
 
-/* 80) SQL DDL Triggers example 1 */
+ --81)
   
-CREATE TABLE EvtLog  
-(  
+ CREATE TABLE EvtLog  
+ (  
    PostTime DATETIME,  
    LoginName NVARCHAR(100),  
    EventType NVARCHAR(100),  
    TSQLCommand NVARCHAR(2000)   
-)  
-GO  
+ )  
+ GO  
 
-CREATE TRIGGER trPreventTblChange   
-ON DATABASE   
-FOR ALTER_TABLE  
-AS  
-DECLARE @Data XML  
-SET @Data = EventData()  
-INSERT EvtLog (PostTime, LoginName, EventType, TSQLCommand)   
-VALUES   
+ CREATE TRIGGER trPreventTblChange   
+ ON DATABASE   
+ FOR ALTER_TABLE  
+ AS  
+ DECLARE @Data XML  
+ SET @Data = EventData()  
+ INSERT EvtLog (PostTime, LoginName, EventType, TSQLCommand)   
+ VALUES   
    (GETDATE(),   
    CONVERT(NVARCHAR(100), CURRENT_USER),   
    @Data.value('(/EVENT_INSTANCE/EventType)[1]', 'nvarchar(100)'),   
    @Data.value('(/EVENT_INSTANCE/TSQLCommand)[1]', 'nvarchar(2000)') ) ;  
-GO  
+ GO  
 	
-ALTER TABLE Rating 
-ADD newColumn SMALLDATETIME NULL  	
-
 SELECT *
 FROM Evtlog
 
+ --82)
 
-/* 81) DDL Triggers example 2 */
-
-CREATE TABLE index_logs (
+ CREATE TABLE index_logs (
     log_id INT IDENTITY PRIMARY KEY,
     event_data XML NOT NULL,
     changed_by SYSNAME NOT NULL
-)
-GO
+ )
+ GO
 
-CREATE TRIGGER trg_index_changes
-ON DATABASE
-FOR 
+ CREATE TRIGGER trg_index_changes
+ ON DATABASE
+ FOR 
     CREATE_INDEX,
     ALTER_INDEX, 
     DROP_INDEX
-AS
-BEGIN
+ AS
+ BEGIN
     SET NOCOUNT ON;
  
     INSERT INTO index_logs (
@@ -1097,44 +1051,22 @@ BEGIN
         EVENTDATA(),
         USER
     )
-END
-GO
+ END
+ GO
 
-CREATE NONCLUSTERED INDEX nidx_fname
-ON Actors(ActorFirstName);
-GO
+ CREATE NONCLUSTERED INDEX nidx_fname
+ ON Actors(ActorFirstName);
+ GO
  
-CREATE NONCLUSTERED INDEX nidx_lname
-ON Actors(ActorLastName);
-GO
+ CREATE NONCLUSTERED INDEX nidx_lname
+ ON Actors(ActorLastName);
+ GO
 
-SELECT 
-    *
-FROM index_logs
+ SELECT *
+ FROM index_logs
 
 
-/* The result :
-<EVENT_INSTANCE>
-  <EventType>CREATE_INDEX</EventType>
-  <PostTime>2020-01-05T00:29:11.573</PostTime>
-  <SPID>54</SPID>
-  <ServerName>LAPTOP-HJMIKUD0</ServerName>
-  <LoginName>LAPTOP-HJMIKUD0\Plamenna Petrova</LoginName>
-  <UserName>dbo</UserName>
-  <DatabaseName>Movies</DatabaseName>
-  <SchemaName>dbo</SchemaName>
-  <ObjectName>nidx_fname</ObjectName>
-  <ObjectType>INDEX</ObjectType>
-  <TargetObjectName>Actors</TargetObjectName>
-  <TargetObjectType>TABLE</TargetObjectType>
-  <TSQLCommand>
-    <SetOptions ANSI_NULLS="ON" ANSI_NULL_DEFAULT="ON" ANSI_PADDING="ON" QUOTED_IDENTIFIER="ON" ENCRYPTED="FALSE" />
-    <CommandText>CREATE NONCLUSTERED INDEX nidx_fname
-ON Actors(ActorFirstName)</CommandText>
-  </TSQLCommand>
-</EVENT_INSTANCE>
 
-*/
 
 
 
