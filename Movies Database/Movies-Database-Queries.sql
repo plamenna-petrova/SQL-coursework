@@ -754,7 +754,7 @@
 
  --69)
 
- ALTER PROCEDURE ActorsProcedure
+ CREATE PROCEDURE ActorsProcedure
  @ActorID int
  AS
  SELECT MovieTitle, MovieLanguage, MovieReleaseDate, ActorFirstName + ' ' + ' ' +ActorLastName
@@ -812,7 +812,7 @@
 
  --71)
 
- ALTER PROCEDURE TopRatedMovies
+ CREATE PROCEDURE TopRatedMovies
  @MovieID int
  AS
  SELECT m.MovieID, m.MovieTitle, r.ReviewStars, r.NumberOfRatings, r.Metascore
@@ -854,7 +854,7 @@
 
  --74)
 
- ALTER FUNCTION fnMoviesByActor
+ CREATE FUNCTION fnMoviesByActor
  (@iActorID int)
  RETURNS table
  AS
@@ -873,7 +873,7 @@
 
  --75)
 
- ALTER FUNCTION fnMoviesActors
+ CREATE FUNCTION fnMoviesActors
  (@sMovieTitle VARCHAR(30))
  RETURNS table
  AS
@@ -893,7 +893,7 @@
 
  --76)
 
- ALTER FUNCTION fnMyFavouriteMovies
+ CREATE FUNCTION fnMyFavouriteMovies
  (@iMovieYear int)
  RETURNS @tblFavouriteMovies table
  (MovieTitle VARCHAR(30),
@@ -917,7 +917,7 @@
 
   --77)
 
-  ALTER FUNCTION fnMyFavouriteMovies
+  CREATE FUNCTION fnMyFavouriteMovies
   (@iMovieYear int)
   RETURNS @tblFavouriteMovies table
   (MovieTitle VARCHAR(30),
