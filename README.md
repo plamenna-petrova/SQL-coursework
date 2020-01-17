@@ -1,1 +1,1 @@
-This repository contains detailed information about my assignments at university. 
+This repository contains detailed information about my SQL database assignment at university. 
